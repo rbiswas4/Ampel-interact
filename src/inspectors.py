@@ -36,21 +36,20 @@ class ScanLC():
         Each is evaluated as gold (2), silver (1) or bogus (0) through the keyboard.
         """
     
-#        global snnbr
         tv = self.inspect_list[self.snnbr]
         snname = ' '.join(tv.tran_names)
 
         if i == 'Gold':
             print("Gold, very likely SLSNe: %s %s"%(self.snnbr,snname))
-            self.decisions[self.snnbr] = i
+            self.decisions[snname] = i
             self.snnbr += 1
         elif i == 'Silver':
             print("Silver, possible SLSNe (inspect further) %s %s"%(self.snnbr,snname))
-            self.decisions[self.snnbr] = i
+            self.decisions[snname] = i
             self.snnbr += 1
         elif i == 'Bogus':
             print("Bogus, definitely not interesting: %s %s"%(self.snnbr,snname))
-            self.decisions[self.snnbr] = i
+            self.decisions[snname] = i
             self.snnbr += 1
         elif i == 'GoBack':
             print("I want to scan some more, go back!")
