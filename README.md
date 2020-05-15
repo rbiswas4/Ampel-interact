@@ -16,6 +16,15 @@ AMPEL manages transient data through a set of base  classes. These are designed 
 * [Ampel-base/interact](https://github.com/AmpelProject/Ampel-interface) contains specifications for the base AMPEL data structures.
 * [Ampel-base-ZTF](https://github.com/AmpelProject/Ampel-base-ZTF) contains class specifications applicable for transients containing data from the Zwicky Transient Facility.
 
+For most system this is sufficient:
+```
+conda env create -f ampelvispa.yml
+git clone https://github.com/AmpelProject/Ampel-interface.git
+pip install -e Ampel-interface
+git clone https://github.com/AmpelProject/Ampel-base-ZTF.git
+pip install -e Ampel-base-ZTF
+```
+
 ### Installing 
 
 The demonstration methods and notebooks used are contained in the [src](src) and [notebooks](notebooks) directories. The [data](data) directory contains a static collection of TransientViews. 
