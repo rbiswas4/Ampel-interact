@@ -7,7 +7,7 @@
 # Last Modified Date: 04.04.2020
 # Last Modified By  : jn <jnordin@physik.hu-berlin.de>
 
-import os, re
+import os, re, fnmatch
 import gzip
 import glob
 import json
@@ -149,7 +149,7 @@ class TVdumpLoader():
 
     def load_matches( self, match_pattern: str )-> List[TransientView]:
         """
-        Load all TransientViews matching a simple pattern.
+        Load all TransientViews matching Unix wildcards (not python re).
         e.g. match_pattern = 'ZTF20aa*'
         """
 
@@ -157,7 +157,7 @@ class TVdumpLoader():
         try:
             for tv in self._tv_iterator():
                 for tvname in tv.tran_names:
-                    if re.search(match_pattern, tvname):
+                    if fnmatch.fnmatch(tvname, match_pattern):
                         tvs.append(tv)
         except EOFError as e:
             pass
