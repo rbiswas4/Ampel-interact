@@ -35,21 +35,25 @@
 channel=HU_TNS_MSIP
 
 # Read old macaroon dcache authorization
+echo "read old macaroon \n"
 dcache_macaroon=$(<$channel/macaroon)
 base_url=https://globe-door.ifh.de:2880/pnfs/ifh.de/acs/ampel/ztf/transient-views/
 
 
 # Step 1: Update the macaroon
+echo "update the macaroon \n"
 macaroon_url=${base_url}$channel/macaroon
 new_macaroon=$(curl -s -L ${macaroon_url}'?authz='$dcache_macaroon -o $channel/macaroon)
 
 
 # Step 2: Get a pointer to the previous manifest
+echo "get a pointer to old manifest\n"
 manifest_url=${base_url}$channel/manifest/latest.json.gz
 manifest=$(curl -s -L ${manifest_url}'?authz='$dcache_macaroon | gunzip)
 manifest_local=$(echo $manifest_url | sed "s|$base_url||")
 
 # Step 3: Check whether the remote latest time is 
+echo "check remote latest time \n"
 remote_time=$(echo $manifest | jq -r ".time")
 # Once the time of a remote manifest reach this, we only need to download the manifest
 stop_time=$(gunzip -c $manifest_local | jq -r ".time")
