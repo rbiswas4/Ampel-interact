@@ -19,6 +19,7 @@ AMPEL manages transient data through a set of base  classes. These are designed 
 For most system this is sufficient:
 ```
 conda env create -f ampelvispa.yml
+conda activate ampelvispa
 git clone https://github.com/AmpelProject/Ampel-interface.git
 pip install -e Ampel-interface
 git clone https://github.com/AmpelProject/Ampel-base-ZTF.git
